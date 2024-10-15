@@ -78,6 +78,7 @@ Download model files:
 
 ## Related links
 
+* [MakerWorld](https://makerworld.com/en/models/706279)
 * [Someline® on Amazon](https://www.amazon.de/dp/B08GBPQJBG)
 
 ## License
