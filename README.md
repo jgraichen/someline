@@ -50,26 +50,26 @@ Download model files:
     <tr>
       <td>
         <center>
-          <a href="export/Someline-15-Insets-U0.step">STEP</a> &middot;
-          <a href="export/Someline-15-Insets-U0.stl">STL</a>
+          <a href="export/someline-15/Someline-15-U0.step">STEP</a> &middot;
+          <a href="export/someline-15/Someline-15-U0.stl">STL</a>
         </center>
       </td>
       <td>
         <center>
-          <a href="export/Someline-15-Insets-U1.step">STEP</a> &middot;
-          <a href="export/Someline-15-Insets-U1.stl">STL</a>
+          <a href="export/someline-15/Someline-15-U1.step">STEP</a> &middot;
+          <a href="export/someline-15/Someline-15-U1.stl">STL</a>
         </center>
       </td>
       <td>
         <center>
-          <a href="export/Someline-15-Insets-U2.step">STEP</a> &middot;
-          <a href="export/Someline-15-Insets-U2.stl">STL</a>
+          <a href="export/someline-15/Someline-15-U2.step">STEP</a> &middot;
+          <a href="export/someline-15/Someline-15-U2.stl">STL</a>
         </center>
       </td>
       <td>
         <center>
-          <a href="export/Someline-15-Insets-U3.step">STEP</a> &middot;
-          <a href="export/Someline-15-Insets-U3.stl">STL</a>
+          <a href="export/someline-15/Someline-15-U3.step">STEP</a> &middot;
+          <a href="export/someline-15/Someline-15-U3.stl">STL</a>
         </center>
       </td>
     </tr>
@@ -85,4 +85,4 @@ Download model files:
 
 All models, print profiles, and other files, if applicable, are licensed under [Creative Commons Attribution-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-sa/4.0/).
 
-[![](https://upload.wikimedia.org/wikipedia/commons/e/e5/CC_BY-SA_icon.svg)](http://creativecommons.org/licenses/by-sa/4.0/)
+[![CC BY-SA 4.0](https://upload.wikimedia.org/wikipedia/commons/e/e5/CC_BY-SA_icon.svg)](http://creativecommons.org/licenses/by-sa/4.0/)
