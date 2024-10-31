@@ -10,7 +10,7 @@ WIDTH = 41.2
 HEIGHT = 33.7
 
 INNER_ROW_SIZE = 24.5
-OUTER_ROW_SIZE = 23.25
+OUTER_ROW_SIZE = 23.5
 
 
 def unit_to_length(u: int):
@@ -36,8 +36,8 @@ def make(units: int):
 
         if units > 1:
             pad, pocket = make_cutout(
-                outer_width=6.0,
-                inner_width=3.8,
+                outer_width=7.0,
+                inner_width=5.0,
                 depth=3.0,
                 height=24.1,
             )
