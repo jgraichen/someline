@@ -13,4 +13,5 @@ dependencies = [
 [tool.uv]
 dev-dependencies = [
     "ocp-vscode>=2.5.3",
+    "pip",
 ]
