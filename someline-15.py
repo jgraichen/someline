@@ -9,7 +9,7 @@ from someline.util import Project
 WIDTH = 30.0
 HEIGHT = 19.2
 
-INNER_ROW_SIZE = 34.0
+INNER_ROW_SIZE = 34.25
 OUTER_ROW_SIZE = 33.25
 
 
@@ -86,6 +86,11 @@ def u3():
 @project.model("Someline-15-U4", color=b.Color(0xFF6A13))
 def u4():
     return make(units=4)
+
+
+@project.model("Someline-15-U5", color=b.Color(0xFF6A13))
+def u5():
+    return make(units=5)
 
 
 if __name__ == "__main__":
