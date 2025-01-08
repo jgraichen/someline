@@ -10,7 +10,7 @@ WIDTH = 41.2
 HEIGHT = 33.7
 
 INNER_ROW_SIZE = 24.5
-OUTER_ROW_SIZE = 23.5
+OUTER_ROW_SIZE = 24.0
 
 
 def unit_to_length(u: int):
@@ -24,20 +24,20 @@ def make(units: int):
     length = unit_to_length(units)
 
     with b.BuildPart() as part:
-        with make_box(length, WIDTH, HEIGHT) as box:
+        with make_box(length, WIDTH, HEIGHT, wall_depth=1.6) as box:
             with b.Locations((0.0, WIDTH, HEIGHT)):
                 if units < 3:
-                    handle = make_handle(length=length)
+                    handle = make_handle(length=length, thickness=1.2)
                 else:
-                    handle = make_handle(length=40)
+                    handle = make_handle(length=40, thickness=1.2)
                 b.add(handle)
 
         b.add(box)
 
         if units > 1:
             pad, pocket = make_cutout(
-                outer_width=7.0,
-                inner_width=5.0,
+                outer_width=9.0,
+                inner_width=6.0,
                 depth=3.0,
                 height=24.1,
             )
