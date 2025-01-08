@@ -7,17 +7,17 @@ import build123d as b
 
 
 @contextmanager
-def make_box(length: float, width: float, height: float):
+def make_box(length: float, width: float, height: float, wall_depth: float = 1.2):
     with b.BuildPart(mode=b.Mode.PRIVATE) as part:
         b.Box(length, width, height, align=False)
 
         with b.BuildSketch(b.Plane.XY.offset(1.0)):
-            with b.Locations((1.2, 1.2)):
+            with b.Locations((wall_depth, wall_depth)):
                 b.RectangleRounded(
-                    length - 2.4,
-                    width - 2.4,
+                    length - (2 * wall_depth),
+                    width - (2 * wall_depth),
                     align=b.Align.MIN,
-                    radius=5.8,
+                    radius=(7 - wall_depth),
                 )
 
         b.extrude(amount=height, mode=b.Mode.SUBTRACT)
@@ -35,21 +35,21 @@ def make_box(length: float, width: float, height: float):
         # Inner top chamfer
         b.chamfer(
             part.edges().group_by(b.Axis.Z)[-1].group_by(b.Axis.Y)[1],
-            length=0.8,
+            length=(wall_depth - 0.4),
         )
 
     return part.part
 
 
-def make_handle(length: float):
+def make_handle(length: float, thickness=0.8):
     with b.BuildPart(mode=b.Mode.PRIVATE) as handle:
         with b.BuildSketch(b.Plane.YZ):
             with b.BuildLine():
                 b.Polyline(
                     [
                         (0, 0),
-                        (0, -9),
-                        (-7, -0.8),
+                        (0, -9 - thickness),
+                        (-7, -thickness),
                         (-7, 0),
                         (0, 0),
                     ]
