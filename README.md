@@ -32,6 +32,11 @@ The insets have some tolerances to ease inserting and removing. Therefore, I rec
         <img src="docs/someline-15-u.jpeg"/>
       </a>
     </td>
+    <td>
+      <a href="docs/someline-15-u-2.jpeg">
+        <img src="docs/someline-15-u-2.jpeg"/>
+      </a>
+    </td>
   </tr>
 </table>
 
@@ -44,6 +49,8 @@ Download model files:
       <th><center>U1</center></th>
       <th><center>U2</center></th>
       <th><center>U3</center></th>
+      <th><center>U4</center></th>
+      <th><center>U5</center></th>
     </tr>
   </thead>
   <tbody>
@@ -70,6 +77,18 @@ Download model files:
         <center>
           <a href="export/someline-15/Someline-15-U3.step">STEP</a> &middot;
           <a href="export/someline-15/Someline-15-U3.stl">STL</a>
+        </center>
+      </td>
+      <td>
+        <center>
+          <a href="export/someline-15/Someline-15-U4.step">STEP</a> &middot;
+          <a href="export/someline-15/Someline-15-U4.stl">STL</a>
+        </center>
+      </td>
+      <td>
+        <center>
+          <a href="export/someline-15/Someline-15-U5.step">STEP</a> &middot;
+          <a href="export/someline-15/Someline-15-U5.stl">STL</a>
         </center>
       </td>
     </tr>
