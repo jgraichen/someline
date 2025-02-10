@@ -9,7 +9,7 @@ import build123d as b
 @contextmanager
 def make_box(length: float, width: float, height: float, wall_depth: float = 1.2):
     with b.BuildPart(mode=b.Mode.PRIVATE) as part:
-        b.Box(length, width, height, align=False)
+        b.Box(length, width, height, align=None)
 
         with b.BuildSketch(b.Plane.XY.offset(1.0)):
             with b.Locations((wall_depth, wall_depth)):
