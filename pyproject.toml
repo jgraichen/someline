@@ -10,8 +10,8 @@ dependencies = [
   "fuzzysearch~=0.7.3",
 ]
 
-[tool.uv]
-dev-dependencies = [
+[dependency-groups]
+dev = [
   "ocp-vscode~=2.6.1",
-  "pip",
+  "pip>=25.0.1",
 ]

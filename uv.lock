@@ -1,5 +1,4 @@
 version = 1
-revision = 1
 requires-python = ">=3.12, <4"
 
 [[package]]
@@ -1160,7 +1159,7 @@ requires-dist = [
 [package.metadata.requires-dev]
 dev = [
     { name = "ocp-vscode", specifier = "~=2.6.1" },
-    { name = "pip" },
+    { name = "pip", specifier = ">=25.0.1" },
 ]
 
 [[package]]
