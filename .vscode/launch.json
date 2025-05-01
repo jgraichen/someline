@@ -1,0 +1,56 @@
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Python Debugger: Someline 36 U1",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "someline-36.py",
+      "console": "integratedTerminal",
+      "args": "run U1"
+    },
+    {
+      "name": "Python Debugger: Someline 15 U4",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "someline-15.py",
+      "console": "integratedTerminal",
+      "args": "run U4"
+    },
+    {
+      "name": "Python Debugger: Someline 36 U4",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "someline-36.py",
+      "console": "integratedTerminal",
+      "args": "run U4"
+    },
+    {
+      "name": "Python Debugger: Someline 36 U6",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "someline-36.py",
+      "console": "integratedTerminal",
+      "args": "run U6"
+    },
+    {
+      "name": "Python Debugger: Someline 36 C3",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "someline-36.py",
+      "console": "integratedTerminal",
+      "args": "run C3"
+    },
+    {
+      "name": "Python Debugger: Someline 36 C5",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "someline-36.py",
+      "console": "integratedTerminal",
+      "args": "run C5"
+    }
+  ]
+}
