@@ -26,7 +26,7 @@ def make_box(length: float, width: float, height: float, wall_depth: float = 1.2
         yield part
 
         # Curve outermost edges
-        zx = part.edges().filter_by(b.Axis.Z).group_by(b.Axis.Y)
+        zx = part.edges().filter_by(b.Axis.Z).group_by(b.Axis.X)
         b.fillet(zx[0] + zx[-1], radius=7)
 
         # Bottom edge chamfer
