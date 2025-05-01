@@ -3,7 +3,7 @@
 
 import build123d as b
 
-from someline.someline import make_box, make_cutout, make_handle
+from someline.someline import make_box, make_handle, make_wall_cutout
 from someline.util import Project
 
 WIDTH = 30.0
@@ -35,7 +35,7 @@ def make(units: int, width: int = WIDTH):
         b.add(box)
 
         if units > 1:
-            pad, pocket = make_cutout(
+            pad, pocket = make_wall_cutout(
                 outer_width=5.0,
                 inner_width=4.0,
                 depth=2.2,
@@ -60,37 +60,16 @@ def make(units: int, width: int = WIDTH):
     return part.part
 
 
-project = Project("someline-15")
+project = Project("someline-15", default_color=b.Color(0xFF6A13))
 
 
-@project.model("Someline-15-U0", color=b.Color(0xFF6A13))
+@project.model("Someline-15-U0")
 def u0():
     return make(units=1, width=25.0)
 
 
-@project.model("Someline-15-U1", color=b.Color(0xFF6A13))
-def u1():
-    return make(units=1)
-
-
-@project.model("Someline-15-U2", color=b.Color(0xFF6A13))
-def u2():
-    return make(units=2)
-
-
-@project.model("Someline-15-U3", color=b.Color(0xFF6A13))
-def u3():
-    return make(units=3)
-
-
-@project.model("Someline-15-U4", color=b.Color(0xFF6A13))
-def u4():
-    return make(units=4)
-
-
-@project.model("Someline-15-U5", color=b.Color(0xFF6A13))
-def u5():
-    return make(units=5)
+for i in range(1, 6):
+    project.define(f"Someline-15-U{i}", fn=make, args={"units": i})
 
 
 if __name__ == "__main__":

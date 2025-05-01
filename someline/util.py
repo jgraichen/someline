@@ -3,18 +3,21 @@
 
 import os
 import re
+from functools import wraps
 from typing import Callable, Optional
 
 import click
 from build123d import Color, Part, export_step, export_stl
 
 STEP_TIMESTAMP_PATTERN = re.compile("FILE_NAME.*'(\\d+-\\d+-\\d+T\\d+:\\d+:\\d+)'")
-ModelFunc = Callable[[], Part]
+
+ModelFunc = Callable[..., Part]
 
 
 class Project:
-    def __init__(self, name: str) -> None:
+    def __init__(self, name: str, default_color: Optional[Color] = None) -> None:
         self.name = name
+        self.default_color = default_color
         self._models = {}
         self._results = {}
 
@@ -30,21 +33,34 @@ class Project:
         for name in self._models:
             yield self[name], name
 
-    def model(
+    def define(
         self,
         name: str,
+        fn: ModelFunc,
         color: Optional[Color] = None,
-    ) -> Callable[[ModelFunc], ModelFunc]:
-        def decorator(func: ModelFunc) -> ModelFunc:
-            def wrapper():
-                part = func()
-                part.label = name
-                if color:
-                    part.color = color
-                return part
+        args: ... = {},
+    ):
+        @wraps(fn)
+        def wrapper():
+            part = fn(**args)
+            part.label = name
+            if color:
+                part.color = color
+            elif self.default_color:
+                part.color = self.default_color
+            return part
 
-            self._models[name] = wrapper
-            return wrapper
+        if name in self._models:
+            raise KeyError(f"Name {name} already taken")
+
+        self._models[name] = wrapper
+        return wrapper
+
+    def model(
+        self, name: str, color: Optional[Color] = None
+    ) -> Callable[[ModelFunc], ModelFunc]:
+        def decorator(fn: ModelFunc) -> ModelFunc:
+            return self.define(name, fn, color)
 
         return decorator
 

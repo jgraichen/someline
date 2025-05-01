@@ -30,7 +30,11 @@ def make_box(length: float, width: float, height: float, wall_depth: float = 1.2
         b.fillet(zx[0] + zx[-1], radius=7)
 
         # Bottom edge chamfer
-        b.chamfer(part.edges().group_by(b.Axis.Z)[0], length=1)
+        zy = (
+            part.edges().group_by(b.Axis.Z)[0].group_by(b.Axis.Y)[0]
+            + part.edges().group_by(b.Axis.Z)[0].group_by(b.Axis.Y)[-1]
+        )
+        b.chamfer(zy, length=1)
 
         # Inner top chamfer
         b.chamfer(
@@ -59,7 +63,7 @@ def make_handle(length: float, thickness=0.8):
     return handle.part
 
 
-def make_cutout(
+def make_wall_cutout(
     outer_width: float,
     inner_width: float,
     depth: float,

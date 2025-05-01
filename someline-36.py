@@ -3,7 +3,7 @@
 
 import build123d as b
 
-from someline.someline import make_box, make_cutout, make_handle
+from someline.someline import make_box, make_handle, make_wall_cutout
 from someline.util import Project
 
 WIDTH = 41.2
@@ -28,7 +28,7 @@ def unit_to_length(u: int):
         return 2 * OUTER_ROW_SIZE + (u - 2) * INNER_ROW_SIZE
 
 
-def lit_cutouts(length):
+def b_cap_hinge_cutout(length):
     with b.BuildPart(mode=b.Mode.PRIVATE) as cutout:
         with b.BuildSketch(b.Plane.YZ):
             with b.BuildLine():
@@ -70,32 +70,31 @@ def make(units: int):
                     handle = make_handle(length=40, thickness=1.2)
                 b.add(handle)
 
+            if units > 1:
+                pad, pocket = make_wall_cutout(
+                    outer_width=9.0,
+                    inner_width=6.0,
+                    depth=3.0,
+                    height=24.1,
+                )
+
+                sym_plane = b.Plane.XZ.offset(-WIDTH / 2)
+                with b.BuildPart(mode=b.Mode.PRIVATE) as padM:
+                    b.add(pad)
+                    b.mirror(pad, about=sym_plane)
+                with b.BuildPart(mode=b.Mode.PRIVATE) as pocketM:
+                    b.add(pocket)
+                    b.mirror(pocket, about=sym_plane)
+
+                with b.Locations((OUTER_ROW_SIZE, 0.0, 0.0)):
+                    with b.GridLocations(
+                        INNER_ROW_SIZE, 0, units - 1, 1, align=b.Align.MIN
+                    ):
+                        b.add(padM)
+                        b.add(pocketM, mode=b.Mode.SUBTRACT)
+
         b.add(box)
-
-        if units > 1:
-            pad, pocket = make_cutout(
-                outer_width=9.0,
-                inner_width=6.0,
-                depth=3.0,
-                height=24.1,
-            )
-
-            sym_plane = b.Plane.XZ.offset(-WIDTH / 2)
-            with b.BuildPart(mode=b.Mode.PRIVATE) as padM:
-                b.add(pad)
-                b.mirror(pad, about=sym_plane)
-            with b.BuildPart(mode=b.Mode.PRIVATE) as pocketM:
-                b.add(pocket)
-                b.mirror(pocket, about=sym_plane)
-
-            with b.Locations((OUTER_ROW_SIZE, 0.0, 0.0)):
-                with b.GridLocations(
-                    INNER_ROW_SIZE, 0, units - 1, 1, align=b.Align.MIN
-                ):
-                    b.add(padM)
-                    b.add(pocketM, mode=b.Mode.SUBTRACT)
-
-        lit_cutouts(length)
+        b_cap_hinge_cutout(length)
 
     return part.part
 
@@ -161,7 +160,7 @@ def make_cutout_box(units: int):
             length=(WALL_DEPTH - 0.4),
         )
 
-        pad, pocket = make_cutout(
+        pad, pocket = make_wall_cutout(
             outer_width=9.0,
             inner_width=6.0,
             depth=3.0,
@@ -173,12 +172,12 @@ def make_cutout_box(units: int):
 
         for loc in locs:
             with b.Locations(loc):
-                # Always add cutouts on back side
+                # Always add wall cutouts on back side
                 b.add(pad, rotation=(0, 0, 180.0))
                 b.add(pocket, mode=b.Mode.SUBTRACT, rotation=(0, 0, 180.0))
 
-                # Add cutouts on front side only if they are not in the
-                # box cutout area:
+                # Add wall cutouts on front side only if they are not in
+                # the cutout area for the cap hinges:
                 if loc.position.X < (length / 2 - 15) or loc.position.X > (
                     length / 2 + 15
                 ):
@@ -186,70 +185,23 @@ def make_cutout_box(units: int):
                         b.add(pad)
                         b.add(pocket, mode=b.Mode.SUBTRACT)
 
-        lit_cutouts(length)
+        b_cap_hinge_cutout(length)
 
     return part.part
 
 
-project = Project("someline-36")
+project = Project("someline-36", default_color=b.Color(0xFF6A13))
+
+for i in range(1, 11):
+    project.define(f"Someline-36-U{i}", make, args={"units": i})
 
 
-@project.model("Someline-36-U1", color=b.Color(0xFF6A13))
-def u1():
-    return make(units=1)
-
-
-@project.model("Someline-36-U2", color=b.Color(0xFF6A13))
-def u2():
-    return make(units=2)
-
-
-@project.model("Someline-36-U3", color=b.Color(0xFF6A13))
-def u3():
-    return make(units=3)
-
-
-@project.model("Someline-36-U4", color=b.Color(0xFF6A13))
-def u4():
-    return make(units=4)
-
-
-@project.model("Someline-36-U5", color=b.Color(0xFF6A13))
-def u5():
-    return make(units=5)
-
-
-@project.model("Someline-36-U6", color=b.Color(0xFF6A13))
-def u6():
-    return make(units=6)
-
-
-@project.model("Someline-36-U7", color=b.Color(0xFF6A13))
-def u7():
-    return make(units=7)
-
-
-@project.model("Someline-36-U8", color=b.Color(0xFF6A13))
-def u8():
-    return make(units=8)
-
-
-@project.model("Someline-36-U9", color=b.Color(0xFF6A13))
-def u9():
-    return make(units=9)
-
-
-@project.model("Someline-36-U10", color=b.Color(0xFF6A13))
-def u10():
-    return make(units=10)
-
-
-@project.model("Someline-36-C3", color=b.Color(0xFF6A13))
+@project.model("Someline-36-C3")
 def c3():
     return make_cutout_box(units=3)
 
 
-@project.model("Someline-36-C5", color=b.Color(0xFF6A13))
+@project.model("Someline-36-C5")
 def c5():
     return make_cutout_box(units=5)
 
