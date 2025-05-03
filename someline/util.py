@@ -3,11 +3,12 @@
 
 import os
 import re
+from fnmatch import fnmatch
 from functools import wraps
 from typing import Callable, Optional
 
 import click
-from build123d import Color, Part, export_step, export_stl
+from build123d import Color, Compound, Part, export_step, export_stl, pack
 
 STEP_TIMESTAMP_PATTERN = re.compile("FILE_NAME.*'(\\d+-\\d+-\\d+T\\d+:\\d+:\\d+)'")
 
@@ -79,21 +80,32 @@ def _main(ctx: click.Context):
 
 
 @_main.command(name="run")
-@click.argument("text", default="")
+@click.argument("pattern", default="")
 @_pass_project
-def _run(project: Project, text: str):
+def _run(project: Project, pattern: str):
     import ocp_vscode  # pylint: disable=C0415
 
-    if text:
+    shapes = []
+
+    if pattern:
+        if "*" not in pattern and "?" not in pattern and "[" not in pattern:
+            pattern = f"*{pattern}*"
+
         for name in project.names():
-            if text in name:
-                ocp_vscode.show(project[name])
-                break
-        else:
-            click.echo("No match found for: {text}")
-            raise click.Abort()
+            if fnmatch(name, pattern):
+                shapes.append(project[name])
     else:
-        ocp_vscode.show(*project, names=project.names())
+        shapes.extend([m for m, _ in project])
+
+    if not shapes:
+        click.echo(f"No match found for: {pattern}")
+        raise click.Abort()
+
+    assembly = Compound(
+        label=project.name,
+        children=pack(shapes, padding=4),
+    )
+    ocp_vscode.show(assembly)
 
 
 @_main.command(name="export")

@@ -111,10 +111,10 @@ def make_cutout_box(units: int):
                         (0, WIDTH),
                         (length, WIDTH),
                         (length, 0),
-                        ((length / 2 + 15), 0),
-                        ((length / 2 + 15), 10),
-                        ((length / 2 - 15), 10),
-                        ((length / 2 - 15), 0),
+                        ((length / 2 + 20), 0),
+                        ((length / 2 + 20), 10),
+                        ((length / 2 - 20), 10),
+                        ((length / 2 - 20), 0),
                         (0, 0),
                     ]
                 )
