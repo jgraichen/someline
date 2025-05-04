@@ -6,7 +6,11 @@ The insets can be used for small parts storage, such as screws or threaded inser
 
 A label tab supports common 6 mm label printer tape.
 
-## Someline® box with 15 compartments
+You can find all models and print profiles on [MakerWorld](https://makerworld.com/en/collections/6267464).
+
+## Someline box with 15 compartments
+
+See: [MakerWorld](https://makerworld.com/en/models/706279) &middot; [Amazon](https://www.amazon.de/dp/B08GBPQJBG)
 
 The insets have some tolerances to ease inserting and removing. Therefore, I recommend placing a few walls to balance spacing.
 
@@ -40,65 +44,30 @@ The insets have some tolerances to ease inserting and removing. Therefore, I rec
   </tr>
 </table>
 
-Download model files:
+## Someline box with 36 compartments
 
-<table width="100%">
-  <thead>
-    <tr>
-      <th><center>U0</center></th>
-      <th><center>U1</center></th>
-      <th><center>U2</center></th>
-      <th><center>U3</center></th>
-      <th><center>U4</center></th>
-      <th><center>U5</center></th>
-    </tr>
-  </thead>
-  <tbody>
+See: MakerWorld &middot; [Amazon](https://www.amazon.de/dp/B07R8SM128)
+
+<center>
+  <table cellpadding="0">
     <tr>
       <td>
-        <center>
-          <a href="export/someline-15/Someline-15-U0.step">STEP</a> &middot;
-          <a href="export/someline-15/Someline-15-U0.stl">STL</a>
-        </center>
+        <a href="docs/someline-36.jpeg">
+          <img src="docs/someline-36.jpeg" height="350" />
+        </a>
       </td>
       <td>
-        <center>
-          <a href="export/someline-15/Someline-15-U1.step">STEP</a> &middot;
-          <a href="export/someline-15/Someline-15-U1.stl">STL</a>
-        </center>
-      </td>
-      <td>
-        <center>
-          <a href="export/someline-15/Someline-15-U2.step">STEP</a> &middot;
-          <a href="export/someline-15/Someline-15-U2.stl">STL</a>
-        </center>
-      </td>
-      <td>
-        <center>
-          <a href="export/someline-15/Someline-15-U3.step">STEP</a> &middot;
-          <a href="export/someline-15/Someline-15-U3.stl">STL</a>
-        </center>
-      </td>
-      <td>
-        <center>
-          <a href="export/someline-15/Someline-15-U4.step">STEP</a> &middot;
-          <a href="export/someline-15/Someline-15-U4.stl">STL</a>
-        </center>
-      </td>
-      <td>
-        <center>
-          <a href="export/someline-15/Someline-15-U5.step">STEP</a> &middot;
-          <a href="export/someline-15/Someline-15-U5.stl">STL</a>
-        </center>
+        <a href="docs/someline-36-u.png">
+          <img src="docs/someline-36-u.png" height="350" />
+        </a>
       </td>
     </tr>
-  </tbody>
-</table>
+  </table>
+</center>
 
 ## Related links
 
-* [MakerWorld](https://makerworld.com/en/models/706279)
-* [Someline® on Amazon](https://www.amazon.de/dp/B08GBPQJBG)
+* [MakerWorld Collection](https://makerworld.com/en/collections/6267464)
 
 ## License
 
