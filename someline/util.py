@@ -4,35 +4,70 @@
 import os
 import re
 from fnmatch import fnmatch
-from functools import wraps
-from typing import Callable, Optional
+from functools import cached_property, wraps
+from typing import Callable, Generator, Optional
 
 import click
-from build123d import Color, Compound, Part, export_step, export_stl, pack
+from build123d import (
+    Color,
+    Compound,
+    Location,
+    Part,
+    export_step,
+    export_stl,
+    pack,
+)
 
 STEP_TIMESTAMP_PATTERN = re.compile("FILE_NAME.*'(\\d+-\\d+-\\d+T\\d+:\\d+:\\d+)'")
 
 ModelFunc = Callable[..., Part]
 
 
-class Project:
-    def __init__(self, name: str, default_color: Optional[Color] = None) -> None:
+class Model:
+    def __init__(
+        self,
+        name: str,
+        fn: ModelFunc,
+        color: Optional[Color] = None,
+        grid: Optional[tuple[float, float]] = None,
+    ):
         self.name = name
+        self.color = color
+        self.grid = grid
+        self._fn = fn
+
+    @cached_property
+    def part(self):
+        part = self._fn()
+        part.label = self.name
+        if self.color:
+            part.color = self.color
+        return part
+
+
+class Project:
+    def __init__(
+        self,
+        name: str,
+        default_color: Optional[Color] = None,
+        grid: Optional[tuple[float, float]] = None,
+        padding: int = 4,
+    ) -> None:
+        self.name = name
+        self.grid = grid
+        self.padding = padding
         self.default_color = default_color
         self._models = {}
-        self._results = {}
 
     def names(self):
         return list(self._models)
 
-    def __getitem__(self, name):
-        if name not in self._results:
-            self._results[name] = self._models[name]()
-        return self._results[name]
+    def __getitem__(self, name: str):
+        return self._models[name]
 
-    def __iter__(self):
+    def __iter__(self) -> Generator[Model, None, None]:
         for name in self._models:
-            yield self[name], name
+            yield self[name]
 
     def define(
         self,
@@ -40,30 +75,52 @@ class Project:
         fn: ModelFunc,
         color: Optional[Color] = None,
         args: ... = {},
+        grid: Optional[tuple[int, int]] = None,
     ):
         @wraps(fn)
         def wrapper():
-            part = fn(**args)
-            part.label = name
-            if color:
-                part.color = color
-            elif self.default_color:
-                part.color = self.default_color
-            return part
+            return fn(**args)
 
         if name in self._models:
             raise KeyError(f"Name {name} already taken")
 
-        self._models[name] = wrapper
-        return wrapper
+        self._models[name] = Model(
+            name=name, fn=wrapper, color=color or self.default_color, grid=grid
+        )
 
     def model(
-        self, name: str, color: Optional[Color] = None
+        self,
+        name: str,
+        color: Optional[Color] = None,
+        grid: Optional[tuple[int, int]] = None,
     ) -> Callable[[ModelFunc], ModelFunc]:
         def decorator(fn: ModelFunc) -> ModelFunc:
-            return self.define(name, fn, color)
+            self.define(name, fn, color=color, grid=grid)
+            return fn
 
         return decorator
+
+    def assembly(self, pattern: str = None, force_pack: bool = False):
+        if pattern:
+            models = [m for m in self if fnmatch(m.name, pattern)]
+        else:
+            models = [m for m in self]
+
+        if not models:
+            return None
+
+        if not force_pack and self.grid:
+            parts = [
+                Location((m.grid[0] * self.grid[0], m.grid[1] * -self.grid[1])) * m.part
+                for m in models
+            ]
+        else:
+            parts = pack([m.part for m in models], padding=self.padding, align_z=True)
+
+        return Compound(
+            label=self.name,
+            children=parts,
+        )
 
     def main(self):
         _main(obj=self)  # pylint: disable=E1120
@@ -81,30 +138,20 @@ def _main(ctx: click.Context):
 
 @_main.command(name="run")
 @click.argument("pattern", default="")
+@click.option("--pack", is_flag=True)
 @_pass_project
-def _run(project: Project, pattern: str):
+def _run(project: Project, pattern: str, pack: bool):
     import ocp_vscode  # pylint: disable=C0415
-
-    shapes = []
 
     if pattern:
         if "*" not in pattern and "?" not in pattern and "[" not in pattern:
             pattern = f"*{pattern}*"
 
-        for name in project.names():
-            if fnmatch(name, pattern):
-                shapes.append(project[name])
-    else:
-        shapes.extend([m for m, _ in project])
-
-    if not shapes:
+    assembly = project.assembly(pattern, force_pack=pack)
+    if not assembly:
         click.echo(f"No match found for: {pattern}")
         raise click.Abort()
 
-    assembly = Compound(
-        label=project.name,
-        children=pack(shapes, padding=4),
-    )
     ocp_vscode.show(assembly)
 
 
@@ -117,16 +164,16 @@ def _export(project: Project, _list: bool, directory: str):
         directory = os.path.join("export", project.name)
 
     if _list:
-        for name in project.names():
-            print(os.path.join(directory, f"{name}.step"))
-            print(os.path.join(directory, f"{name}.stl"))
+        for model in project:
+            print(os.path.join(directory, f"{model.name}.step"))
+            print(os.path.join(directory, f"{model.name}.stl"))
         return
 
-    for model, name in project:
+    for model in project:
         os.makedirs(directory, exist_ok=True)
 
-        file = os.path.join(directory, f"{name}.step")
-        export_step(model, file)
+        file = os.path.join(directory, f"{model.name}.step")
+        export_step(model.part, file)
 
         # Remove timestamp from STEP exports because otherwise git
         # would always have changes.
@@ -143,4 +190,4 @@ def _export(project: Project, _list: bool, directory: str):
                     fd.write(b"0000-00-00T00:00:00")
                     break
 
-        export_stl(model, os.path.join(directory, f"{name}.stl"))
+        export_stl(model.part, os.path.join(directory, f"{model.name}.stl"))
