@@ -290,7 +290,7 @@ def make_half_cutout_box(units: int, flip=False):
 
 project = Project("someline-36", default_color=b.Color(0xFF6A13))
 
-for i in range(1, 10):
+for i in range(1, 11):
     project.define(f"Someline-36-U{i}", make, args={"units": i})
 
 
