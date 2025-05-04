@@ -4,7 +4,7 @@
 import os
 import re
 from fnmatch import fnmatch
-from functools import cached_property, wraps
+from functools import cached_property
 from typing import Callable, Generator, Optional
 
 import click
@@ -69,36 +69,17 @@ class Project:
         for name in self._models:
             yield self[name]
 
-    def define(
+    def add(
         self,
         name: str,
-        fn: ModelFunc,
+        fn: Optional[ModelFunc] = None,
         color: Optional[Color] = None,
-        args: ... = {},
         grid: Optional[tuple[int, int]] = None,
     ):
-        @wraps(fn)
-        def wrapper():
-            return fn(**args)
-
         if name in self._models:
             raise KeyError(f"Name {name} already taken")
 
-        self._models[name] = Model(
-            name=name, fn=wrapper, color=color or self.default_color, grid=grid
-        )
-
-    def model(
-        self,
-        name: str,
-        color: Optional[Color] = None,
-        grid: Optional[tuple[int, int]] = None,
-    ) -> Callable[[ModelFunc], ModelFunc]:
-        def decorator(fn: ModelFunc) -> ModelFunc:
-            self.define(name, fn, color=color, grid=grid)
-            return fn
-
-        return decorator
+        self._models[name] = Model(name, fn, color or self.default_color, grid)
 
     def assembly(self, pattern: str = None, force_pack: bool = False):
         if pattern:
@@ -108,6 +89,12 @@ class Project:
 
         if not models:
             return None
+
+        if len(models) < 2:
+            return Compound(
+                label=self.name,
+                children=[m.part for m in models],
+            )
 
         if not force_pack and self.grid:
             parts = [

@@ -1,6 +1,8 @@
 # pylint: disable=missing-docstring,invalid-name
 
 
+from functools import partial
+
 import build123d as b
 
 from someline.someline import (
@@ -295,50 +297,17 @@ project = Project(
 )
 
 for i in range(1, 7):
-    project.define(
-        f"Someline-36-U{i}",
-        make,
-        args={"units": i},
-        grid=(0, i),
-    )
+    project.add(f"U{i}", partial(make, units=i), grid=(0, i))
 
 for i in range(7, 11):
-    project.define(
-        f"Someline-36-U{i}",
-        make,
-        args={"units": i},
-        grid=(6, i - 6),
-    )
+    project.add(f"U{i}", partial(make, units=i), grid=(6, i - 6))
 
-
-@project.model("Someline-36-A1", grid=(6, 5))
-def a1():
-    return make_half_cutout_box(units=1)
-
-
-@project.model("Someline-36-A2", grid=(8, 5))
-def a2():
-    return make_half_cutout_box(units=2)
-
-
-@project.model("Someline-36-B1", grid=(13, 5))
-def b1():
-    return make_half_cutout_box(units=1, flip=True)
-
-
-@project.model("Someline-36-B2", grid=(16, 5))
-def b2():
-    return make_half_cutout_box(units=2, flip=True)
-
-
-@project.model("Someline-36-C3", grid=(7, 6))
-def c3():
-    return make_cutout_box(units=3)
-
-
-@project.model("Someline-36-C5", grid=(11, 6))
-def c5():
-    return make_cutout_box(units=5)
+project.add("A1", partial(make_half_cutout_box, units=1), grid=(6, 5))
+project.add("A2", partial(make_half_cutout_box, units=2), grid=(8, 5))
+project.add("B1", partial(make_half_cutout_box, units=2, flip=True), grid=(13, 5))
+project.add("B2", partial(make_half_cutout_box, units=2, flip=True), grid=(16, 5))
+project.add("C3", partial(make_cutout_box, units=3), grid=(7, 6))
+project.add("C5", partial(make_cutout_box, units=5), grid=(11, 6))
 
 
 if __name__ == "__main__":

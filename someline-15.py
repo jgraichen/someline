@@ -1,6 +1,8 @@
 # pylint: disable=missing-docstring,invalid-name
 
 
+from functools import partial
+
 import build123d as b
 
 from someline.someline import make_box, make_handle, make_wall_cutout
@@ -61,15 +63,10 @@ def make(units: int, width: int = WIDTH):
 
 
 project = Project("someline-15", default_color=b.Color(0xFF6A13))
-
-
-@project.model("Someline-15-U0")
-def u0():
-    return make(units=1, width=25.0)
-
+project.add("U0", partial(make, units=1, width=25.0))
 
 for i in range(1, 6):
-    project.define(f"Someline-15-U{i}", fn=make, args={"units": i})
+    project.add(f"U{i}", partial(make, units=i))
 
 
 if __name__ == "__main__":
