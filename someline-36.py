@@ -304,7 +304,7 @@ for i in range(7, 11):
 
 project.add("A1", partial(make_half_cutout_box, units=1), grid=(6, 5))
 project.add("A2", partial(make_half_cutout_box, units=2), grid=(8, 5))
-project.add("B1", partial(make_half_cutout_box, units=2, flip=True), grid=(13, 5))
+project.add("B1", partial(make_half_cutout_box, units=1, flip=True), grid=(13, 5))
 project.add("B2", partial(make_half_cutout_box, units=2, flip=True), grid=(16, 5))
 project.add("C3", partial(make_cutout_box, units=3), grid=(7, 6))
 project.add("C5", partial(make_cutout_box, units=5), grid=(11, 6))
