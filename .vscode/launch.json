@@ -51,6 +51,38 @@
       "program": "someline-36.py",
       "console": "integratedTerminal",
       "args": "run C5"
+    },
+    {
+      "name": "Python Debugger: Someline 36 A1",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "someline-36.py",
+      "console": "integratedTerminal",
+      "args": "run A1"
+    },
+    {
+      "name": "Python Debugger: Someline 36 A2",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "someline-36.py",
+      "console": "integratedTerminal",
+      "args": "run A2"
+    },
+    {
+      "name": "Python Debugger: Someline 36 B2",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "someline-36.py",
+      "console": "integratedTerminal",
+      "args": "run B2"
+    },
+    {
+      "name": "Python Debugger: Someline 36 B1",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "someline-36.py",
+      "console": "integratedTerminal",
+      "args": "run B1"
     }
   ]
 }
