@@ -1,9 +1,8 @@
 ISO-10303-21;
 HEADER;
 FILE_DESCRIPTION(('Open CASCADE Model'),'2;1');
-FILE_NAME('Someline-36-B2','0000-00-00T00:00:00',('Author'),(
-    'Open CASCADE'),'Open CASCADE STEP processor 7.8','build123d',
-  'Unknown');
+FILE_NAME('B2','0000-00-00T00:00:00',('Author'),('Open CASCADE'),
+  'Open CASCADE STEP processor 7.8','build123d','Unknown');
 FILE_SCHEMA(('AUTOMOTIVE_DESIGN { 1 0 10303 214 1 1 1 1 }'));
 ENDSEC;
 DATA;
@@ -15,7 +14,7 @@ DATA;
 #4 = PRODUCT_DEFINITION_SHAPE('','',#5);
 #5 = PRODUCT_DEFINITION('design','',#6,#9);
 #6 = PRODUCT_DEFINITION_FORMATION('','',#7);
-#7 = PRODUCT('Someline-36-B2','Someline-36-B2','',(#8));
+#7 = PRODUCT('B2','B2','',(#8));
 #8 = PRODUCT_CONTEXT('',#2,'mechanical');
 #9 = PRODUCT_DEFINITION_CONTEXT('part definition',#2,'design');
 #10 = ADVANCED_BREP_SHAPE_REPRESENTATION('',(#11,#15),#9012);
