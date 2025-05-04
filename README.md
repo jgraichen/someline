@@ -46,7 +46,7 @@ The insets have some tolerances to ease inserting and removing. Therefore, I rec
 
 ## Someline box with 36 compartments
 
-See: [MakerWorld](https://makerworld.com/en/models/1383525) &middot; [Amazon](https://www.amazon.de/dp/B07R8SM128)
+See: [MakerWorld](https://makerworld.com/en/models/1383525) &middot; [Amazon](https://www.amazon.de/dp/B07RBMHPLP)
 
 <center>
   <table cellpadding="0">
