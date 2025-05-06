@@ -21,6 +21,14 @@
       "args": "run U4"
     },
     {
+      "name": "Python Debugger: Someline 15 Cap",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "someline-15.py",
+      "console": "integratedTerminal",
+      "args": "run cap"
+    },
+    {
       "name": "Python Debugger: Someline 36 U4",
       "type": "debugpy",
       "request": "launch",
@@ -35,22 +43,6 @@
       "program": "someline-36.py",
       "console": "integratedTerminal",
       "args": "run U6"
-    },
-    {
-      "name": "Python Debugger: Someline 36 C3",
-      "type": "debugpy",
-      "request": "launch",
-      "program": "someline-36.py",
-      "console": "integratedTerminal",
-      "args": "run C3"
-    },
-    {
-      "name": "Python Debugger: Someline 36 C5",
-      "type": "debugpy",
-      "request": "launch",
-      "program": "someline-36.py",
-      "console": "integratedTerminal",
-      "args": "run C5"
     },
     {
       "name": "Python Debugger: Someline 36 A1",
@@ -69,6 +61,14 @@
       "args": "run A2"
     },
     {
+      "name": "Python Debugger: Someline 36 B1",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "someline-36.py",
+      "console": "integratedTerminal",
+      "args": "run B1"
+    },
+    {
       "name": "Python Debugger: Someline 36 B2",
       "type": "debugpy",
       "request": "launch",
@@ -77,12 +77,20 @@
       "args": "run B2"
     },
     {
-      "name": "Python Debugger: Someline 36 B1",
+      "name": "Python Debugger: Someline 36 C3",
       "type": "debugpy",
       "request": "launch",
       "program": "someline-36.py",
       "console": "integratedTerminal",
-      "args": "run B1"
+      "args": "run C3"
+    },
+    {
+      "name": "Python Debugger: Someline 36 C5",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "someline-36.py",
+      "console": "integratedTerminal",
+      "args": "run C5"
     }
   ]
 }

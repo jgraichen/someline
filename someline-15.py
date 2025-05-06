@@ -62,11 +62,52 @@ def make(units: int, width: float = WIDTH):
     return part.part
 
 
+def make_cap():
+    width = 18.5
+    length = 21.6
+
+    cr = 2.3 / 2
+    cz = 2.5
+
+    with b.BuildPart() as part:
+        b.Box(length, width, 5.2, align=(b.Align.MIN, b.Align.CENTER, b.Align.MIN))
+        b.fillet(part.edges().filter_by(b.Axis.Z).group_by(b.Axis.X)[-1], radius=1.5)
+
+        with b.BuildSketch(b.Plane.XZ) as sk:
+            with b.Locations((1, 4.2)):
+                b.Rectangle(length, 3, align=b.Align.MIN)
+                b.chamfer(sk.vertices(), length=0.5)
+            with b.Locations((2.2, cz)):
+                b.Circle(radius=cr)
+                b.Rectangle(1.7, 3, align=(b.Align.CENTER, b.Align.MIN))
+
+        b.extrude(amount=-100, both=True, mode=b.Mode.SUBTRACT)
+
+        yzx = part.edges().filter_by(b.Axis.Y).group_by(b.Axis.Z)[0].group_by(b.Axis.X)
+        b.chamfer(yzx[0], length=1)
+        b.chamfer(yzx[-1], length=0.6)
+
+        with b.BuildSketch(b.Plane.XY.offset(cz - cr)) as skb:
+            with b.Locations((2.2, 0)):
+                b.Rectangle(
+                    length - 2.2 - 1.2,
+                    width - (1.2 * 2),
+                    align=(b.Align.MIN, b.Align.CENTER),
+                )
+                b.fillet(skb.vertices().group_by(b.Axis.X)[-1], radius=0.2)
+
+        b.extrude(amount=10, mode=b.Mode.SUBTRACT)
+
+    return part.part
+
+
 project = Project("someline-15", default_color=b.Color(0xFF6A13))
 project.add("U0", partial(make, units=1, width=25.0))
 
 for i in range(1, 6):
     project.add(f"U{i}", partial(make, units=i))
+
+project.add("cap", make_cap, export=False)
 
 
 if __name__ == "__main__":
