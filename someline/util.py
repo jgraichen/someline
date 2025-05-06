@@ -28,12 +28,15 @@ class Model:
         self,
         name: str,
         fn: ModelFunc,
+        *,  # required customizations as keyword arguments:
         color: Color | None = None,
+        export: bool = True,
         grid: tuple[float, float] | None = None,
     ):
         self.name = name
         self.color = color
         self.grid = grid
+        self.export = export
         self._fn = fn
 
     @cached_property
@@ -49,6 +52,7 @@ class Project:
     def __init__(
         self,
         name: str,
+        *,  # require customizations as keyword arguments:
         default_color: Color | None = None,
         grid: tuple[float, float] | None = None,
         padding: int = 4,
@@ -72,14 +76,22 @@ class Project:
     def add(
         self,
         name: str,
-        fn: ModelFunc | None = None,
+        fn: ModelFunc,
+        *,  # require customizations as keyword arguments:
         color: Color | None = None,
         grid: tuple[int, int] | None = None,
+        export: bool = True,
     ):
         if name in self._models:
             raise KeyError(f"Name {name} already taken")
 
-        self._models[name] = Model(name, fn, color or self.default_color, grid)
+        self._models[name] = Model(
+            name,
+            fn,
+            color=(color or self.default_color),
+            grid=grid,
+            export=export,
+        )
 
     def assembly(self, pattern: str | None = None, force_pack: bool = False):
         if pattern:
@@ -150,13 +162,15 @@ def _export(project: Project, _list: bool, directory: str):
     if not directory:
         directory = os.path.join("export", project.name)
 
+    models = [model for model in project if model.export]
+
     if _list:
-        for model in project:
+        for model in models:
             print(os.path.join(directory, f"{model.name}.step"))
             print(os.path.join(directory, f"{model.name}.stl"))
         return
 
-    for model in project:
+    for model in models:
         os.makedirs(directory, exist_ok=True)
 
         file = os.path.join(directory, f"{model.name}.step")
