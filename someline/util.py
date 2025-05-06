@@ -160,7 +160,7 @@ def _export(project: Project, _list: bool, directory: str):
         os.makedirs(directory, exist_ok=True)
 
         file = os.path.join(directory, f"{model.name}.step")
-        export_step(model.part, file, timestamp="0000-00-00T00:00:00")
+        export_step(model.part, file)
 
         # Remove timestamp from STEP exports because otherwise git
         # would always have changes.
