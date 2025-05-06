@@ -2,7 +2,6 @@
 
 
 from contextlib import contextmanager
-from typing import Optional
 
 import build123d as b
 
@@ -13,7 +12,7 @@ def make_box(
     width: float,
     height: float,
     wall_depth: float = 1.2,
-    sketch: Optional[b.Sketch] = None,
+    sketch: b.Sketch | None = None,
 ):
     with b.BuildPart(mode=b.Mode.PRIVATE) as part:
         b.Box(length, width, height, align=None)
@@ -63,7 +62,7 @@ def make_loft_box(
     wall_depth: float = 1.2,
     bottom_depth: float = 1.2,
     loft: float = 0.5,
-    sketch: Optional[b.Sketch] = None,
+    sketch: b.Sketch | None = None,
 ):
     with b.BuildPart(mode=b.Mode.PRIVATE) as box:
         with b.BuildSketch(b.Plane.XY.offset(height)) as skt:

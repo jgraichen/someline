@@ -5,7 +5,7 @@ import os
 import re
 from fnmatch import fnmatch
 from functools import cached_property
-from typing import Callable, Generator, Optional
+from typing import Callable, Generator
 
 import click
 from build123d import (
@@ -28,8 +28,8 @@ class Model:
         self,
         name: str,
         fn: ModelFunc,
-        color: Optional[Color] = None,
-        grid: Optional[tuple[float, float]] = None,
+        color: Color | None = None,
+        grid: tuple[float, float] | None = None,
     ):
         self.name = name
         self.color = color
@@ -49,8 +49,8 @@ class Project:
     def __init__(
         self,
         name: str,
-        default_color: Optional[Color] = None,
-        grid: Optional[tuple[float, float]] = None,
+        default_color: Color | None = None,
+        grid: tuple[float, float] | None = None,
         padding: int = 4,
     ) -> None:
         self.name = name
@@ -72,9 +72,9 @@ class Project:
     def add(
         self,
         name: str,
-        fn: Optional[ModelFunc] = None,
-        color: Optional[Color] = None,
-        grid: Optional[tuple[int, int]] = None,
+        fn: ModelFunc | None = None,
+        color: Color | None = None,
+        grid: tuple[int, int] | None = None,
     ):
         if name in self._models:
             raise KeyError(f"Name {name} already taken")
@@ -160,7 +160,7 @@ def _export(project: Project, _list: bool, directory: str):
         os.makedirs(directory, exist_ok=True)
 
         file = os.path.join(directory, f"{model.name}.step")
-        export_step(model.part, file)
+        export_step(model.part, file, timestamp="0000-00-00T00:00:00")
 
         # Remove timestamp from STEP exports because otherwise git
         # would always have changes.
