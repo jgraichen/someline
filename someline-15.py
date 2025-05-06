@@ -22,7 +22,7 @@ def unit_to_length(u: int):
         return 2 * OUTER_ROW_SIZE + (u - 2) * INNER_ROW_SIZE
 
 
-def make(units: int, width: int = WIDTH):
+def make(units: int, width: float = WIDTH):
     length = unit_to_length(units)
 
     with b.BuildPart() as part:

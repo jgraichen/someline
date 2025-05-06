@@ -81,7 +81,7 @@ class Project:
 
         self._models[name] = Model(name, fn, color or self.default_color, grid)
 
-    def assembly(self, pattern: str = None, force_pack: bool = False):
+    def assembly(self, pattern: str | None = None, force_pack: bool = False):
         if pattern:
             models = [m for m in self if fnmatch(m.name, pattern)]
         else:

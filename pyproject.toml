@@ -14,4 +14,5 @@ dependencies = [
 dev = [
   "ocp-vscode~=2.7.0",
   "pip>=25.0.1",
+  "ty>=0.0.0a5",
 ]

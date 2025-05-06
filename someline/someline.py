@@ -15,7 +15,7 @@ def make_box(
     sketch: b.Sketch | None = None,
 ):
     with b.BuildPart(mode=b.Mode.PRIVATE) as part:
-        b.Box(length, width, height, align=None)
+        b.Box(length, width, height, align=b.Align.MIN)
 
         with b.BuildSketch(b.Plane.XY.offset(1.0)):
             if sketch:
