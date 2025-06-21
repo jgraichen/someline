@@ -310,5 +310,174 @@ project.add("C3", partial(make_cutout_box, units=3), grid=(7, 6))
 project.add("C5", partial(make_cutout_box, units=5), grid=(11, 6))
 
 
+@project.plate(name="XS")
+def plate_xs():
+    return (
+        (
+            project["U1"],
+            project["U2"],
+            project["U2"],
+            project["U2"],
+            project["U2"],
+            project["U1"],
+        ),
+        (
+            project["U1"],
+            project["U2"],
+            project["U2"],
+            project["U2"],
+            project["U2"],
+            project["U1"],
+        ),
+        (
+            project["U3"],
+            project["U2"],
+            project["U2"],
+            project["U3"],
+        ),
+        (
+            project["U1"],
+            project["A1"],
+            project["B1"],
+            project["U2"],
+            project["A1"],
+            project["B1"],
+            project["U1"],
+        ),
+    )
+
+
+@project.plate(name="S")
+def plate_s():
+    return (
+        (
+            project["U2"],
+            project["U2"],
+            project["U2"],
+            project["U4"],
+        ),
+        (
+            project["U2"],
+            project["U2"],
+            project["U2"],
+            project["U4"],
+        ),
+        (
+            project["U3"],
+            project["U4"],
+            project["U3"],
+        ),
+        (
+            project["A2"],
+            project["B2"],
+            project["A2"],
+            project["B2"],
+        ),
+    )
+
+
+@project.plate(name="M")
+def plate_m():
+    return (
+        (
+            project["U2"],
+            project["U2"],
+            project["U2"],
+            project["U4"],
+        ),
+        (
+            project["U3"],
+            project["U3"],
+            project["U4"],
+        ),
+        (
+            project["U3"],
+            project["U3"],
+            project["U4"],
+        ),
+        (
+            project["A2"],
+            project["B2"],
+            project["A2"],
+            project["B2"],
+        ),
+    )
+
+
+@project.plate(name="L")
+def plate_l():
+    return (
+        (
+            project["U2"],
+            project["U2"],
+            project["U2"],
+            project["U2"],
+            project["U2"],
+        ),
+        (
+            project["U5"],
+            project["U5"],
+        ),
+        (
+            project["U5"],
+            project["U5"],
+        ),
+        (
+            project["U1"],
+            project["C3"],
+            project["U2"],
+            project["C3"],
+            project["U1"],
+        ),
+    )
+
+
+@project.plate(name="XL")
+def plate_xl():
+    return (
+        (
+            project["U4"],
+            project["U2"],
+            project["U4"],
+        ),
+        (
+            project["U5"],
+            project["U5"],
+        ),
+        (
+            project["U5"],
+            project["U5"],
+        ),
+        (
+            project["C5"],
+            project["C5"],
+        ),
+    )
+
+
+@project.plate(name="XXL")
+def plate_xxl():
+    return (
+        (
+            project["U5"],
+            project["U5"],
+        ),
+        (
+            project["U8"],
+            project["U2"],
+        ),
+        (
+            project["U8"],
+            project["U2"],
+        ),
+        (
+            project["A2"],
+            project["B2"],
+            project["A2"],
+            project["B2"],
+        ),
+    )
+
+
 if __name__ == "__main__":
     project.main()
