@@ -928,7 +928,7 @@ wheels = [
 
 [[package]]
 name = "ocp-tessellate"
-version = "3.0.17"
+version = "3.1.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "cachetools" },
@@ -936,14 +936,14 @@ dependencies = [
     { name = "numpy" },
     { name = "webcolors" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/53/07/dfce7d1275aef81127b64d7141b95104696fad9d507ff1e6465144eed45b/ocp_tessellate-3.0.17.tar.gz", hash = "sha256:c49dff4c58b6666b366495081ccee480a5246f59172e5fd9ec56f826190f338f", size = 65771, upload-time = "2025-08-04T16:35:20.759Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/b3/1d/55e0eaf2935bd7329f1405e8c77150553608888de7599b2075e8549ee41a/ocp_tessellate-3.1.0.tar.gz", hash = "sha256:4c6ae4ef5874bd1c691ee15fcb8a4e670c27f9cc44a3cb48021a74c529ae0884", size = 65829, upload-time = "2025-11-04T16:25:05.042Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/1d/8e/a2562438a05c48625f90ca30a8914840718536b340059a9b39cb03c462ef/ocp_tessellate-3.0.17-py3-none-any.whl", hash = "sha256:1bc66a930d07e67f83c276b83ed041b1dcd13daf05e9ed179ca638d5f93d5909", size = 76860, upload-time = "2025-08-04T16:35:19.647Z" },
+    { url = "https://files.pythonhosted.org/packages/c2/3c/2cd5a8970dcec45097a749c667f700f180a654c894d72275424c5276c37f/ocp_tessellate-3.1.0-py3-none-any.whl", hash = "sha256:7b57d00ebd4ab33d9981b22d7a016dc4585ec7a6270965a030a5c0822eb4c9a4", size = 76976, upload-time = "2025-11-04T16:25:03.904Z" },
 ]
 
 [[package]]
 name = "ocp-vscode"
-version = "2.9.0"
+version = "3.0.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "click" },
@@ -952,16 +952,15 @@ dependencies = [
     { name = "ipykernel" },
     { name = "ocp-tessellate" },
     { name = "orjson" },
-    { name = "pip" },
     { name = "pyaml" },
     { name = "pyperclip" },
     { name = "questionary" },
     { name = "requests" },
     { name = "websockets" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/8f/03/152929005f4170c49e98ad87806432f2ef78b569bea1751a87ffa3a8385d/ocp_vscode-2.9.0.tar.gz", hash = "sha256:b156736868baa72c7680e4fad05f8d833abed0c7ddbee331e7e07e8275f9bd0b", size = 609974, upload-time = "2025-08-05T14:01:46.977Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/66/90/7b6b5840f6a6f081522623e14401e6f14636bccb2731c94274b6a4cb1ea6/ocp_vscode-3.0.0.tar.gz", hash = "sha256:85c483ccb349a2e86520e98de4901315f314296dfc59a7a3c2ffece21146fdab", size = 619952, upload-time = "2025-11-04T17:07:05.557Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/65/9c/96aaf4a86b41a37588e607c741a496c71f3a5b2e1931021d68132cd6ad03/ocp_vscode-2.9.0-py3-none-any.whl", hash = "sha256:485b3934f57a23e3367a96093fdb6389806b2ef56aca0cca3b068972365b8a28", size = 611399, upload-time = "2025-08-05T14:01:45.049Z" },
+    { url = "https://files.pythonhosted.org/packages/63/b7/61c54107a20c4ce540cfcebabbd5c6388d979b8a6894e184bdd0be4bd672/ocp_vscode-3.0.0-py3-none-any.whl", hash = "sha256:4dc4d636a55ba9bd635c9a0a6878afd8f03c9a0ada560d463a6af9aa26b40d4a", size = 622055, upload-time = "2025-11-04T17:07:04.022Z" },
 ]
 
 [[package]]
@@ -1351,14 +1350,14 @@ wheels = [
 
 [[package]]
 name = "questionary"
-version = "2.1.0"
+version = "2.1.1"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "prompt-toolkit" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/a8/b8/d16eb579277f3de9e56e5ad25280fab52fc5774117fb70362e8c2e016559/questionary-2.1.0.tar.gz", hash = "sha256:6302cdd645b19667d8f6e6634774e9538bfcd1aad9be287e743d96cacaf95587", size = 26775, upload-time = "2024-12-29T11:49:17.802Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/f6/45/eafb0bba0f9988f6a2520f9ca2df2c82ddfa8d67c95d6625452e97b204a5/questionary-2.1.1.tar.gz", hash = "sha256:3d7e980292bb0107abaa79c68dd3eee3c561b83a0f89ae482860b181c8bd412d", size = 25845, upload-time = "2025-08-28T19:00:20.851Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/ad/3f/11dd4cd4f39e05128bfd20138faea57bec56f9ffba6185d276e3107ba5b2/questionary-2.1.0-py3-none-any.whl", hash = "sha256:44174d237b68bc828e4878c763a9ad6790ee61990e0ae72927694ead57bab8ec", size = 36747, upload-time = "2024-12-29T11:49:16.734Z" },
+    { url = "https://files.pythonhosted.org/packages/3c/26/1062c7ec1b053db9e499b4d2d5bc231743201b74051c973dadeac80a8f43/questionary-2.1.1-py3-none-any.whl", hash = "sha256:a51af13f345f1cdea62347589fbb6df3b290306ab8930713bfae4d475a7d4a59", size = 36753, upload-time = "2025-08-28T19:00:19.56Z" },
 ]
 
 [[package]]
@@ -1484,7 +1483,7 @@ requires-dist = [
 
 [package.metadata.requires-dev]
 dev = [
-    { name = "ocp-vscode", specifier = "~=2.9.0" },
+    { name = "ocp-vscode", specifier = "~=3.0.0" },
     { name = "pip", specifier = ">=25.0.1" },
     { name = "ty", specifier = ">=0.0.0a5" },
 ]
