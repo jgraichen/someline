@@ -1,3 +1,4 @@
+exclude: ^export/
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v6.0.0
@@ -7,7 +8,6 @@ repos:
       - id: check-yaml
       - id: end-of-file-fixer
       - id: trailing-whitespace
-    exclude: ^export/
   - repo: https://github.com/astral-sh/uv-pre-commit
     rev: "0.9.9"
     hooks:
