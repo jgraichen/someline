@@ -6,6 +6,10 @@ on:
   pull_request:
   workflow_dispatch:
 
+env:
+  PY_COLORS: "1"
+  FORCE_COLOR: true
+
 jobs:
   export:
     runs-on: ubuntu-24.04
@@ -22,3 +26,28 @@ jobs:
       - run: git status
       - run: git diff
 
+  ruff-check:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v5
+      - uses: astral-sh/setup-uv@v7
+        with:
+          enable-cache: True
+      - uses: actions/setup-python@v6
+        with:
+          python-version-file: .python-version
+      - run: uv sync --dev --frozen
+      - run: uv run ruff check --no-fix --diff --output-format=github
+
+  ruff-format:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v5
+      - uses: astral-sh/setup-uv@v7
+        with:
+          enable-cache: True
+      - uses: actions/setup-python@v6
+        with:
+          python-version-file: .python-version
+      - run: uv sync --dev --frozen
+      - run: uv run ruff format --diff --check
