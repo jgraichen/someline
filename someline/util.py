@@ -281,19 +281,4 @@ def _export_stl(shape: Shape, file: str):
 
 def _export_step(shape: Shape, file: str):
     os.makedirs(os.path.dirname(file), exist_ok=True)
-    export_step(shape, file)
-
-    # Remove timestamp from STEP exports because otherwise git would
-    # always have changes.
-    with open(file, "rb+") as fd:
-        for line in fd:
-            if not line.startswith(b"FILE_NAME"):
-                continue
-
-            text = line.decode("utf-8")
-            match = STEP_TIMESTAMP_PATTERN.match(text)
-            if match:
-                ts = match.group(1).encode("utf-8")
-                fd.seek(-len(line) + line.index(ts), 1)
-                fd.write(b"0000-00-00T00:00:00")
-                break
+    export_step(shape, file, timestamp="0000-00-00T00:00:00")
