@@ -3,7 +3,7 @@ name = "someline"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
-requires-python = "~=3.13.0"
+requires-python = "~=3.14.1"
 dependencies = [
   "build123d~=0.10.0",
   "click~=8.3.0",
