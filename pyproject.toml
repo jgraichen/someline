@@ -12,7 +12,7 @@ dependencies = [
 
 [dependency-groups]
 dev = [
-  "ocp-vscode~=3.0.0",
+  "ocp-vscode~=3.1.2",
   "pip>=25.0.1",
   "ruff>=0.14.5",
   "ty>=0.0.0a5",
