@@ -619,7 +619,7 @@ wheels = [
 
 [[package]]
 name = "ocp-tessellate"
-version = "3.2.2"
+version = "3.3.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "cachetools" },
@@ -627,14 +627,14 @@ dependencies = [
     { name = "numpy" },
     { name = "webcolors" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/6b/9b/87a52571966915cd9c105dcda42edff6c7484bfe09b085ce481babe26dec/ocp_tessellate-3.2.2.tar.gz", hash = "sha256:a65664adb7f98e669da595240aaace265d536a27b36da55799fcc93f5c6894ba", size = 69467, upload-time = "2026-04-04T10:16:10.746Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/5a/9e/29d6c937a4825801e3d47ffe616d3bbb18b4bd70541a2accbd4b5771f523/ocp_tessellate-3.3.0.tar.gz", hash = "sha256:f37010328f5fa821d6d3010610d70dd205eb26020ae422ccd4405a8e1aca8ead", size = 74041, upload-time = "2026-05-13T13:52:36.84Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/fc/3f/45446515a20b938b291203d9be39473d246cbb659541ab91ddc75ac4af20/ocp_tessellate-3.2.2-py3-none-any.whl", hash = "sha256:71042d41eeae10ae31230c6aef769da1feeef6ded6488c5eda5ad24d92d0e2a9", size = 80978, upload-time = "2026-04-04T10:16:09.287Z" },
+    { url = "https://files.pythonhosted.org/packages/9c/13/31f4fd2f95c850d0c7d09e82379ec7b60d40662b119777c5c24296019f6a/ocp_tessellate-3.3.0-py3-none-any.whl", hash = "sha256:3de3c66b7c623ae80e8a2c84eb1c6657e7683ab72a66f1ac75f7b639aaea6352", size = 84120, upload-time = "2026-05-13T13:52:35.446Z" },
 ]
 
 [[package]]
 name = "ocp-vscode"
-version = "3.3.4"
+version = "3.4.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "click" },
@@ -652,9 +652,9 @@ dependencies = [
     { name = "threejs-materials" },
     { name = "websockets" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/65/2e/fce2171d22f0c261986af4801a002f53c7d10bd82bb4802734e46901db72/ocp_vscode-3.3.4.tar.gz", hash = "sha256:b678a6306f151ad07a07f3372b54e3d1d3404701f22b1ba094767cc73c0d2d74", size = 929517, upload-time = "2026-04-07T14:35:32.878Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/7b/b4/60b134187ec06e9f3fe4b83358df9e4b5c069c0cf463eb231d704f1b644a/ocp_vscode-3.4.0.tar.gz", hash = "sha256:8cae10b8e0a7a249eb7f29ab68a3fb92553ab958fe367d2dd73c6b4c9060375a", size = 938812, upload-time = "2026-05-13T17:36:52.042Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/2e/85/96cb39ba06d5e5ff9b6dc94910245a3cca4c137d2349be1496ec58bc6050/ocp_vscode-3.3.4-py3-none-any.whl", hash = "sha256:09c61024166e0a10864126d845cf08e9e54155ce855060b83eb8209f31d482ea", size = 922525, upload-time = "2026-04-07T14:35:30.883Z" },
+    { url = "https://files.pythonhosted.org/packages/5d/df/fcea79efe2b1559b031035a66b2a32b635b630b388f2759c2c23f7461bbf/ocp_vscode-3.4.0-py3-none-any.whl", hash = "sha256:5974f873f3ab610730fb6e89e8e24e0271f38a167fa091ef2a49cce419e1ff75", size = 932471, upload-time = "2026-05-13T17:36:50.294Z" },
 ]
 
 [[package]]
@@ -1078,7 +1078,7 @@ requires-dist = [
 
 [package.metadata.requires-dev]
 dev = [
-    { name = "ocp-vscode", specifier = "~=3.3.4" },
+    { name = "ocp-vscode", specifier = "~=3.4.0" },
     { name = "pip", specifier = ">=25.0.1" },
     { name = "ruff", specifier = ">=0.14.5" },
     { name = "ty", specifier = ">=0.0.0a5" },
@@ -1144,16 +1144,17 @@ wheels = [
 
 [[package]]
 name = "threejs-materials"
-version = "1.0.4"
+version = "1.1.1"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "pillow" },
+    { name = "platformdirs" },
     { name = "pygltflib" },
     { name = "requests" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/ca/7b/0f9e298de06134e36ffe1e4b365cda5605cc3a11c1b40936b941f357130f/threejs_materials-1.0.4.tar.gz", hash = "sha256:315b9dbb7d5b87daa3735326f758faacf0b906ca6c49b737e91dff8d1768dbff", size = 92571, upload-time = "2026-04-09T12:05:00.183Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/35/f9/b4dbd46e69614b7c47c922048ecf1a98b9cf9bf1e7a74dff8240abfcea9b/threejs_materials-1.1.1.tar.gz", hash = "sha256:ca00c8297934a20a96f3570db7918288f20805bb1b8a4ae50342ce9860e1cf73", size = 128286, upload-time = "2026-05-06T15:22:41.836Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/f1/3a/59d0ad302eb4a5ca891b40c8ce1916690737b714d52f100ca696f23150d3/threejs_materials-1.0.4-py3-none-any.whl", hash = "sha256:d38e27dca790996e9599123e554b8d8186e616d458bf308b5d2f64c47451642e", size = 57526, upload-time = "2026-04-09T12:04:58.803Z" },
+    { url = "https://files.pythonhosted.org/packages/80/98/76e560d986385352239ad3ba1b8826ce2c33b1a5de25265a0ed7b87ec703/threejs_materials-1.1.1-py3-none-any.whl", hash = "sha256:06fa718363355530e51258e5e1f833e69bbc0d0ed917d456c2095854e24f13f4", size = 72168, upload-time = "2026-05-06T15:22:40.192Z" },
 ]
 
 [[package]]
