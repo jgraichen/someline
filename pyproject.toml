@@ -6,7 +6,7 @@ readme = "README.md"
 requires-python = "~=3.13.0"
 dependencies = [
   "build123d~=0.10.0",
-  "click~=8.3.0",
+  "click~=8.4.1",
   "fuzzysearch~=0.8.0",
 ]
 
