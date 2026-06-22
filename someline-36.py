@@ -158,13 +158,12 @@ def make_cutout_box(units: int):
                 sk.vertices().group_by(b.Axis.X)[0]
                 + sk.vertices().group_by(b.Axis.X)[-1]
             )
+            b.fillet(vtouter, radius=7)
 
             vtinner = (
-                sk.vertices().group_by(b.Axis.X)[1]
-                + sk.vertices().group_by(b.Axis.X)[2]
+                sk.vertices().group_by(b.Axis.X)[2]
+                + sk.vertices().group_by(b.Axis.X)[3]
             )
-
-            b.fillet(vtouter, radius=7)
             b.fillet(vtinner, radius=2.5)
 
         # Create a standard loft box based on the customized sketch. The
@@ -238,13 +237,12 @@ def make_half_cutout_box(units: int, flip=False):
                 sk.vertices().group_by(b.Axis.X)[0]
                 + sk.vertices().group_by(b.Axis.X)[-1]
             )
+            b.fillet(vtouter, radius=7)
 
             vtinner = (
                 sk.vertices().group_by(b.Axis.X)[1]
                 + sk.vertices().group_by(b.Axis.X)[2]
             )
-
-            b.fillet(vtouter, radius=7)
             b.fillet(vtinner, radius=2.5)
 
         # Create a standard loft box based on the customized sketch. The
