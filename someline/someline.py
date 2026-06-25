@@ -82,11 +82,18 @@ def make_loft_box(
 
     with b.BuildPart(mode=b.Mode.PRIVATE) as part:
         b.add(box)
-        b.offset(
-            amount=-wall_depth,
-            openings=part.faces().group_by(b.Axis.Z)[-1]
-            + part.faces().group_by(b.Axis.Z)[0],
-        )
+
+        # b.offset is not working. See
+        # https://github.com/gumyr/build123d/issues/1351.
+
+        with b.BuildSketch(b.Plane.XY.offset(height)):
+            b.add(skt)
+            b.offset(amount=-wall_depth)
+        with b.BuildSketch(b.Plane.XY):
+            b.add(skb)
+            b.offset(amount=-wall_depth)
+        b.loft(mode=b.Mode.SUBTRACT)
+
         b.extrude(skb.sketch, amount=bottom_depth)
 
         # Round inner bottom edges
