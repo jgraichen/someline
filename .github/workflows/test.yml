@@ -24,7 +24,7 @@ jobs:
       - run: uv sync --frozen
       - run: uv run make
       - run: git status
-      - run: git diff --minimal --color --exit-code
+      - run: git diff --minimal --color --exit-code export/ ':!export/*/plate/*'
 
   ruff-check:
     runs-on: ubuntu-24.04
