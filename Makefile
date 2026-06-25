@@ -1,6 +1,6 @@
 #!/usr/bin/env make -f
 
-PY_SRC = $(wildcard *.py)
+PY_SRC = $(wildcard someline-*.py)
 TARGETS = $(addprefix export/, $(notdir $(PY_SRC:.py=)))
 
 all: $(TARGETS)
