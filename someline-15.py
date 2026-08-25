@@ -5,7 +5,7 @@ from functools import partial
 
 import build123d as b
 
-from someline.someline import make_box, make_handle, make_wall_cutout
+from someline.someline import make_box, make_handle, make_wall_cutout, partify
 from someline.util import Project
 
 WIDTH = 30.0
@@ -22,7 +22,7 @@ def unit_to_length(u: int):
         return 2 * OUTER_ROW_SIZE + (u - 2) * INNER_ROW_SIZE
 
 
-def make(units: int, width: float = WIDTH):
+def make(units: int, width: float = WIDTH) -> b.Part:
     length = unit_to_length(units)
 
     with b.BuildPart() as part:
@@ -59,10 +59,10 @@ def make(units: int, width: float = WIDTH):
                     b.add(padM)
                     b.add(pocketM, mode=b.Mode.SUBTRACT)
 
-    return part.part
+    return partify(part.part)
 
 
-def make_cap():
+def make_cap() -> b.Part:
     width = 18.5
     length = 21.6
 
@@ -137,12 +137,12 @@ def make_cap():
 
         with b.Locations((12.0, 0, 0)):
             with b.GridLocations(3.0, 0, 3, 1):
-                b.add(cutout.part, mode=b.Mode.SUBTRACT)
+                b.add(partify(cutout.part), mode=b.Mode.SUBTRACT)
 
         with b.Locations((12.2, 0, cz - cr)):
-            b.add(clip.part)
+            b.add(partify(clip.part))
 
-    return part.part
+    return partify(part.part)
 
 
 project = Project("someline-15", default_color=b.Color(0xFF6A13))

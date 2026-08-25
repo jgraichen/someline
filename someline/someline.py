@@ -2,6 +2,7 @@
 
 
 from contextlib import contextmanager
+from typing import Generator
 
 import build123d as b
 
@@ -63,7 +64,7 @@ def make_loft_box(
     bottom_depth: float = 1.2,
     loft: float = 0.5,
     sketch: b.Sketch | None = None,
-):
+) -> Generator[b.Part, None, None]:
     with b.BuildPart(mode=b.Mode.PRIVATE) as box:
         with b.BuildSketch(b.Plane.XY.offset(height)) as skt:
             if sketch:
@@ -117,10 +118,10 @@ def make_loft_box(
             length=(wall_depth - 0.4),
         )
 
-    return part.part
+    return partify(part.part)
 
 
-def make_handle(length: float, thickness=0.8):
+def make_handle(length: float, thickness=0.8) -> b.Part:
     with b.BuildPart(mode=b.Mode.PRIVATE) as handle:
         with b.BuildSketch(b.Plane.YZ):
             with b.BuildLine():
@@ -135,7 +136,7 @@ def make_handle(length: float, thickness=0.8):
                 )
             b.make_face()
         b.extrude(amount=length)
-    return handle.part
+    return partify(handle.part)
 
 
 def make_wall_cutout(
@@ -144,7 +145,7 @@ def make_wall_cutout(
     depth: float,
     height: float,
     wall: float = 0.8,
-):
+) -> tuple[b.Part, b.Part]:
     pocket = make_wall_cutout_pocket(
         outer_width=outer_width,
         inner_width=inner_width,
@@ -169,7 +170,7 @@ def make_wall_cutout(
         )
         b.fillet(pad.edges().filter_by(b.Axis.Z).group_by(b.Axis.Y)[-1], radius=wall)
 
-    return (pad.part, pocket)
+    return (partify(pad.part), pocket)
 
 
 def make_wall_cutout_pocket(
@@ -177,7 +178,7 @@ def make_wall_cutout_pocket(
     inner_width: float,
     depth: float,
     height: float,
-):
+) -> b.Part:
     with b.BuildPart(mode=b.Mode.PRIVATE) as pocket:
         with b.BuildSketch(b.Plane.XY):
             with b.BuildLine():
@@ -198,4 +199,10 @@ def make_wall_cutout_pocket(
             length=(depth - 0.001),
         )
 
-    return pocket.part
+    return partify(pocket.part)
+
+
+def partify(part: b.Part | None) -> b.Part:
+    if part is None:
+        raise ValueError("part cannot be None")
+    return part

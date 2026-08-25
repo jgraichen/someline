@@ -10,6 +10,7 @@ from someline.someline import (
     make_loft_box,
     make_wall_cutout,
     make_wall_cutout_pocket,
+    partify,
 )
 from someline.util import Project
 
@@ -75,7 +76,7 @@ def b_cap_hinge_cutout(length, half=False):
             b.add(cutout, mode=b.Mode.SUBTRACT)
 
 
-def make(units: int):
+def make(units: int) -> b.Part:
     length = unit_to_length(units)
 
     with b.BuildPart() as part:
@@ -127,10 +128,10 @@ def make(units: int):
                 ):
                     b.add(pocket, mode=b.Mode.SUBTRACT, rotation=(0.0, 0.0, 180.0))
 
-    return part.part
+    return partify(part.part)
 
 
-def make_cutout_box(units: int):
+def make_cutout_box(units: int) -> b.Part:
     length = unit_to_length(units)
 
     with b.BuildPart(mode=b.Mode.PRIVATE) as part:
@@ -205,13 +206,13 @@ def make_cutout_box(units: int):
                             b.add(pad)
                             b.add(pocket, mode=b.Mode.SUBTRACT)
 
-        b.add(box.part)
+        b.add(box)
         b_cap_hinge_cutout(length)
 
-    return part.part
+    return partify(part.part)
 
 
-def make_half_cutout_box(units: int, flip=False):
+def make_half_cutout_box(units: int, flip=False) -> b.Part:
     length = unit_to_length(units) + (INNER_ROW_SIZE / 2)
 
     with b.BuildPart(mode=b.Mode.PRIVATE) as part:
@@ -279,13 +280,13 @@ def make_half_cutout_box(units: int, flip=False):
                         b.add(pad)
                         b.add(pocket, mode=b.Mode.SUBTRACT)
 
-        b.add(box.part)
+        b.add(box)
         b_cap_hinge_cutout(length, half=True)
 
         if flip:
             b.mirror(about=b.Plane.ZY, mode=b.Mode.REPLACE)
 
-    return part.part
+    return partify(part.part)
 
 
 project = Project(
