@@ -1,8 +1,8 @@
 # pylint: disable=missing-docstring
 
 
+from collections.abc import Generator
 from contextlib import contextmanager
-from typing import Generator
 
 import build123d as b
 
@@ -64,7 +64,7 @@ def make_loft_box(
     bottom_depth: float = 1.2,
     loft: float = 0.5,
     sketch: b.Sketch | None = None,
-) -> Generator[b.Part, None, None]:
+) -> Generator[b.Part]:
     with b.BuildPart(mode=b.Mode.PRIVATE) as box:
         with b.BuildSketch(b.Plane.XY.offset(height)) as skt:
             if sketch:

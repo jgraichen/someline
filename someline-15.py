@@ -52,12 +52,12 @@ def make(units: int, width: float = WIDTH) -> b.Part:
                 b.add(pocket)
                 b.mirror(pocket, about=sym_plane)
 
-            with b.Locations((OUTER_ROW_SIZE, 0.0, 0.0)):
-                with b.GridLocations(
-                    INNER_ROW_SIZE, 0, units - 1, 1, align=b.Align.MIN
-                ):
-                    b.add(padM)
-                    b.add(pocketM, mode=b.Mode.SUBTRACT)
+            with (
+                b.Locations((OUTER_ROW_SIZE, 0.0, 0.0)),
+                b.GridLocations(INNER_ROW_SIZE, 0, units - 1, 1, align=b.Align.MIN),
+            ):
+                b.add(padM)
+                b.add(pocketM, mode=b.Mode.SUBTRACT)
 
     return partify(part.part)
 
@@ -135,9 +135,8 @@ def make_cap() -> b.Part:
 
         b.extrude(amount=10, mode=b.Mode.SUBTRACT)
 
-        with b.Locations((12.0, 0, 0)):
-            with b.GridLocations(3.0, 0, 3, 1):
-                b.add(partify(cutout.part), mode=b.Mode.SUBTRACT)
+        with b.Locations((12.0, 0, 0)), b.GridLocations(3.0, 0, 3, 1):
+            b.add(partify(cutout.part), mode=b.Mode.SUBTRACT)
 
         with b.Locations((12.2, 0, cz - cr)):
             b.add(partify(clip.part))

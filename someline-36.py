@@ -122,11 +122,11 @@ def make(units: int) -> b.Part:
             with b.GridLocations(OUTER_ROW_SIZE * units, 0, 2, 1, align=b.Align.MIN):
                 b.add(pocket, mode=b.Mode.SUBTRACT)
 
-            with b.Locations((0.0, WIDTH, 0.0)):
-                with b.GridLocations(
-                    OUTER_ROW_SIZE * units, 0, 2, 1, align=b.Align.MIN
-                ):
-                    b.add(pocket, mode=b.Mode.SUBTRACT, rotation=(0.0, 0.0, 180.0))
+            with (
+                b.Locations((0.0, WIDTH, 0.0)),
+                b.GridLocations(OUTER_ROW_SIZE * units, 0, 2, 1, align=b.Align.MIN),
+            ):
+                b.add(pocket, mode=b.Mode.SUBTRACT, rotation=(0.0, 0.0, 180.0))
 
     return partify(part.part)
 

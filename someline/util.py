@@ -3,9 +3,9 @@
 
 import os
 import re
+from collections.abc import Callable, Generator, Iterable
 from fnmatch import fnmatch
 from functools import cached_property
-from typing import Callable, Generator, Iterable
 
 import click
 from build123d import (
@@ -141,7 +141,7 @@ class Project:
     def __getitem__(self, name: str):
         return self._models[name]
 
-    def __iter__(self) -> Generator[Model, None, None]:
+    def __iter__(self) -> Generator[Model]:
         for name in self._models:
             yield self[name]
 
