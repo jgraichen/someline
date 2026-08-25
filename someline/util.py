@@ -225,9 +225,11 @@ def _main(ctx: click.Context):
 def _run(project: Project, pattern: str, pack: bool):
     import ocp_vscode  # pylint: disable=C0415
 
-    if pattern:
-        if "*" not in pattern and "?" not in pattern and "[" not in pattern:
-            pattern = f"*{pattern}*"
+    def is_pattern(s: str):
+        return "*" in s or "?" in s or "[" in s
+
+    if pattern and not is_pattern(pattern):
+        pattern = f"*{pattern}*"
 
     assembly = project.assembly(pattern, force_pack=pack)
     if not assembly:
