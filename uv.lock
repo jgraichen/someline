@@ -451,7 +451,7 @@ wheels = [
 
 [[package]]
 name = "ocp-tessellate"
-version = "3.5.3"
+version = "3.6.3"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "cachetools" },
@@ -460,14 +460,14 @@ dependencies = [
     { name = "typing-extensions" },
     { name = "webcolors" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/ef/59/f5affe69a54587413b03b22020b0353fba1b4aeb3a281912eb6eaeef9347/ocp_tessellate-3.5.3.tar.gz", hash = "sha256:3f627da7099cd078081432b26db179b7f225241d1ca9474ce959e714f6cac564", size = 88317, upload-time = "2026-09-15T15:51:54.35Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/c7/0f/6cf0424ef032eeffad2280c2b27d530db632957a5811b4b4b1ec24ccfb6b/ocp_tessellate-3.6.3.tar.gz", hash = "sha256:23bbfe6a0d393a26ff1b9f32768d17d6e5e30327016ca34800a0ceda345083d6", size = 110027, upload-time = "2026-10-18T12:11:50.588Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/ca/27/da87f487ef3b1755e278888a72b83b11af7e47dc3321e79cefe0e6370277/ocp_tessellate-3.5.3-py3-none-any.whl", hash = "sha256:411017293e42817904f54f30268dae94ac18b18f3beeba9c0d10fbc12a3d277f", size = 61783, upload-time = "2026-09-15T15:51:53.156Z" },
+    { url = "https://files.pythonhosted.org/packages/79/a8/fe9d8f5c10d437c68c573ff5c1a4638972d500f2a9d88090797d91f413d1/ocp_tessellate-3.6.3-py3-none-any.whl", hash = "sha256:a3e15138226ce71117dd4aa294bab088077d2b8e455a065ba5a7fa00499b4ba1", size = 93469, upload-time = "2026-10-18T12:11:49.127Z" },
 ]
 
 [[package]]
 name = "ocp-viewer-core"
-version = "1.0.13"
+version = "1.1.2"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "ocp-tessellate" },
@@ -476,9 +476,9 @@ dependencies = [
     { name = "threejs-materials" },
     { name = "websockets" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/d2/99/6c36e0fda14e44e66e2fccc04420be7650f813f9e6556cb27e5470171bb8/ocp_viewer_core-1.0.13.tar.gz", hash = "sha256:57ccbfff31a03fdd6c78e1dc5f05ff55d49f959df956d450f211ec7b06bf91ca", size = 117138, upload-time = "2026-09-15T16:50:32.98Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/a3/2d/b31c360396624780dd6bc580f78fe5af25766d2d00518f0d40b6ffdfb3b3/ocp_viewer_core-1.1.2.tar.gz", hash = "sha256:f45124ca4133e05ce69489c8bf9eccd9c730348712513436521853a1ec865d50", size = 120756, upload-time = "2026-10-13T15:15:36.978Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/c6/f7/25889dfacdb3c9278ab3eb0ced060c41ace3c8eca535ad3060f16c19ffc3/ocp_viewer_core-1.0.13-py3-none-any.whl", hash = "sha256:e74796f6b91b058446b84c5469e4ed70c4e3da57afe6dee195d9ab94df9277e5", size = 117926, upload-time = "2026-09-15T16:50:31.706Z" },
+    { url = "https://files.pythonhosted.org/packages/89/09/3456abbf29594b52ed645052f733bd1159f751becc2c281b2b8226c08bd9/ocp_viewer_core-1.1.2-py3-none-any.whl", hash = "sha256:a17d4f2d73fe6e369dd84915970c88eb8ebd753178afb8eb321407ab21c55bf6", size = 117997, upload-time = "2026-10-13T15:15:35.665Z" },
 ]
 
 [package.optional-dependencies]
@@ -488,14 +488,14 @@ cli = [
 
 [[package]]
 name = "ocp-vscode"
-version = "4.1.0"
+version = "4.2.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "ocp-viewer-core", extra = ["cli"] },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/cf/64/5ad3de2ea4a92f55ffba46aea3e7cf5f0caa7ba847cd6d97d54dbae4a497/ocp_vscode-4.1.0.tar.gz", hash = "sha256:fc9e79b34af50420c0eca7c8cdfae96c28318ad11adcd645f12a54b4855f2818", size = 35562, upload-time = "2026-09-16T10:28:25.321Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/59/35/a0b559e27b02dc77fc79f4cbab578ce7dd717d0f65fe6b1400f9b46521b1/ocp_vscode-4.2.0.tar.gz", hash = "sha256:3419f9a64f782342b0e260c32726278f39221e26467a527a3063c2c9f1f8ea87", size = 36390, upload-time = "2026-10-13T16:29:00.705Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/6f/c0/882dda3115d0df79fa67decdc6f9d09048aef521015c2f8d20181e1339e4/ocp_vscode-4.1.0-py3-none-any.whl", hash = "sha256:78c2a2bb7a7918546ce05eb35403b6be542bab5de8d9a7fb8e25b9663ff84432", size = 23326, upload-time = "2026-09-16T10:28:24.204Z" },
+    { url = "https://files.pythonhosted.org/packages/d7/d6/1ce0de49581f6cb075d9da8ac8c059e0cee3b952ff01e1c16bd89dd0f033/ocp_vscode-4.2.0-py3-none-any.whl", hash = "sha256:b705b17990cfdce92d3eeca687725239b35e8e7e4cc77d46b6143ff4ece496cc", size = 23270, upload-time = "2026-10-13T16:28:59.551Z" },
 ]
 
 [[package]]
@@ -838,7 +838,7 @@ requires-dist = [
 
 [package.metadata.requires-dev]
 dev = [
-    { name = "ocp-vscode", specifier = "~=4.1.0" },
+    { name = "ocp-vscode", specifier = "~=4.2.0" },
     { name = "pip", specifier = ">=25.0.1" },
     { name = "ruff", specifier = ">=0.14.5" },
     { name = "ty", specifier = ">=0.0.0a5" },
