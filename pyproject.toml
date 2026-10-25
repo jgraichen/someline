@@ -5,7 +5,7 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = "~=3.14.0"
 dependencies = [
-  "build123d~=0.11.0",
+  "build123d~=0.13.0",
   "click~=8.5.0",
   "fuzzysearch~=0.8.0",
 ]
@@ -16,4 +16,9 @@ dev = [
   "pip>=25.0.1",
   "ruff>=0.14.5",
   "ty>=0.0.0a5",
+]
+
+[tool.ruff.lint]
+ignore = [
+  "SIM117", # nested `with` blocks are idiomatic for build123d builders
 ]

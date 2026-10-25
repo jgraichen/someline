@@ -81,11 +81,11 @@ def make(units: int) -> b.Part:
 
     with b.BuildPart() as part:
         with make_loft_box(length, WIDTH, HEIGHT, wall_depth=WALL_DEPTH) as box:
+            if units < 3:
+                handle = make_handle(length=length, thickness=1.2)
+            else:
+                handle = make_handle(length=50, thickness=1.2)
             with b.Locations((0.0, WIDTH, HEIGHT)):
-                if units < 3:
-                    handle = make_handle(length=length, thickness=1.2)
-                else:
-                    handle = make_handle(length=50, thickness=1.2)
                 b.add(handle)
 
             if units > 1:
@@ -177,12 +177,13 @@ def make_cutout_box(units: int) -> b.Part:
             wall_depth=WALL_DEPTH,
             sketch=sk.sketch,
         ) as box:
+            if units <= 3:
+                handle = make_handle(length=length, thickness=1.2)
+            else:
+                handle = make_handle(length=50, thickness=1.2)
             with b.Locations((0.0, WIDTH, HEIGHT)):
-                if units <= 3:
-                    b.add(make_handle(length=length, thickness=1.2))
-                else:
-                    b.add(make_handle(length=50, thickness=1.2))
-                b.extrude(sk.sketch, amount=HEIGHT, mode=b.Mode.INTERSECT)
+                b.add(handle)
+            b.extrude(sk.sketch, amount=HEIGHT, mode=b.Mode.INTERSECT)
 
             pad, pocket = make_s36_cutouts()
 
@@ -256,12 +257,13 @@ def make_half_cutout_box(units: int, flip=False) -> b.Part:
             wall_depth=WALL_DEPTH,
             sketch=sk.sketch,
         ) as box:
+            if units <= 3:
+                handle = make_handle(length=length, thickness=1.2)
+            else:
+                handle = make_handle(length=50, thickness=1.2)
             with b.Locations((0.0, WIDTH, HEIGHT)):
-                if units <= 3:
-                    b.add(make_handle(length=length, thickness=1.2))
-                else:
-                    b.add(make_handle(length=50, thickness=1.2))
-                b.extrude(sk.sketch, amount=HEIGHT, mode=b.Mode.INTERSECT)
+                b.add(handle)
+            b.extrude(sk.sketch, amount=HEIGHT, mode=b.Mode.INTERSECT)
 
             pad, pocket = make_s36_cutouts()
 

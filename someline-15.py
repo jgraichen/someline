@@ -27,11 +27,11 @@ def make(units: int, width: float = WIDTH) -> b.Part:
 
     with b.BuildPart() as part:
         with make_box(length, width, HEIGHT) as box:
+            if units < 2:
+                handle = make_handle(length=length)
+            else:
+                handle = make_handle(length=28)
             with b.Locations((0.0, width, HEIGHT)):
-                if units < 2:
-                    handle = make_handle(length=length)
-                else:
-                    handle = make_handle(length=28)
                 b.add(handle)
 
         b.add(box)
