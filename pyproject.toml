@@ -17,3 +17,8 @@ dev = [
   "ruff>=0.14.5",
   "ty>=0.0.0a5",
 ]
+
+[tool.ruff.lint]
+ignore = [
+  "SIM117", # nested `with` blocks are idiomatic for build123d builders
+]
