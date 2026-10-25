@@ -20,7 +20,7 @@ def make_box(
 
         with b.BuildSketch(b.Plane.XY.offset(1.0)):
             if sketch:
-                b.add(sketch)
+                b.insert(sketch)
             else:
                 with b.Locations((wall_depth, wall_depth)):
                     b.RectangleRounded(
@@ -68,7 +68,7 @@ def make_loft_box(
     with b.BuildPart(mode=b.Mode.PRIVATE) as box:
         with b.BuildSketch(b.Plane.XY.offset(height)) as skt:
             if sketch:
-                b.add(sketch)
+                b.insert(sketch)
             else:
                 b.RectangleRounded(
                     width=length,
@@ -77,21 +77,21 @@ def make_loft_box(
                     radius=7,
                 )
         with b.BuildSketch(b.Plane.XY) as skb:
-            b.add(skt)
+            b.insert(skt)
             b.offset(amount=-loft, kind=b.Kind.ARC)
         b.loft()
 
     with b.BuildPart(mode=b.Mode.PRIVATE) as part:
-        b.add(box)
+        b.insert(box)
 
         # b.offset is not working. See
         # https://github.com/gumyr/build123d/issues/1351.
 
         with b.BuildSketch(b.Plane.XY.offset(height)):
-            b.add(skt)
+            b.insert(skt)
             b.offset(amount=-wall_depth)
         with b.BuildSketch(b.Plane.XY):
-            b.add(skb)
+            b.insert(skb)
             b.offset(amount=-wall_depth)
         b.loft(mode=b.Mode.SUBTRACT)
 
@@ -103,7 +103,7 @@ def make_loft_box(
         yield part
 
         # Cutoff excess stuff
-        b.add(box, mode=b.Mode.INTERSECT)
+        b.insert(box, mode=b.Mode.INTERSECT)
 
         # Bottom edge chamfer
         zy = (
@@ -154,7 +154,7 @@ def make_wall_cutout(
     )
 
     with b.BuildPart(mode=b.Mode.PRIVATE) as pad:
-        b.add(pocket)
+        b.insert(pocket)
 
         front_face = pad.faces().sort_by(b.Axis.Y)[0]
         bottom_face = pad.faces().sort_by(b.Axis.Z)[0]

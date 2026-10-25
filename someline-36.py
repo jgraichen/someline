@@ -66,14 +66,14 @@ def b_cap_hinge_cutout(length, half=False):
         )
 
     with b.Locations((0.0, LIT_PIN_DY, HEIGHT)):
-        b.add(cutout, mode=b.Mode.SUBTRACT)
+        b.insert(cutout, mode=b.Mode.SUBTRACT)
     with b.Locations((0.0, WIDTH - LIT_PIN_DY, HEIGHT)):
-        b.add(cutout, mode=b.Mode.SUBTRACT)
+        b.insert(cutout, mode=b.Mode.SUBTRACT)
     if not half:
         with b.Locations((length - LIT_PIN_LENGTH, LIT_PIN_DY, HEIGHT)):
-            b.add(cutout, mode=b.Mode.SUBTRACT)
+            b.insert(cutout, mode=b.Mode.SUBTRACT)
         with b.Locations((length - LIT_PIN_LENGTH, WIDTH - LIT_PIN_DY, HEIGHT)):
-            b.add(cutout, mode=b.Mode.SUBTRACT)
+            b.insert(cutout, mode=b.Mode.SUBTRACT)
 
 
 def make(units: int) -> b.Part:
@@ -86,26 +86,26 @@ def make(units: int) -> b.Part:
             else:
                 handle = make_handle(length=50, thickness=1.2)
             with b.Locations((0.0, WIDTH, HEIGHT)):
-                b.add(handle)
+                b.insert(handle)
 
             if units > 1:
                 pad, pocket = make_s36_cutouts()
                 sym_plane = b.Plane.XZ.offset(-WIDTH / 2)
                 with b.BuildPart(mode=b.Mode.PRIVATE) as padM:
-                    b.add(pad)
+                    b.insert(pad)
                     b.mirror(pad, about=sym_plane)
                 with b.BuildPart(mode=b.Mode.PRIVATE) as pocketM:
-                    b.add(pocket)
+                    b.insert(pocket)
                     b.mirror(pocket, about=sym_plane)
 
                 with b.Locations((OUTER_ROW_SIZE, 0.0, 0.0)):
                     with b.GridLocations(
                         INNER_ROW_SIZE, 0, units - 1, 1, align=b.Align.MIN
                     ):
-                        b.add(padM)
-                        b.add(pocketM, mode=b.Mode.SUBTRACT)
+                        b.insert(padM)
+                        b.insert(pocketM, mode=b.Mode.SUBTRACT)
 
-        b.add(box)
+        b.insert(box)
         b_cap_hinge_cutout(length)
 
         # The smallest U1 insets need additional cutouts as they do not
@@ -120,13 +120,13 @@ def make(units: int) -> b.Part:
             )
 
             with b.GridLocations(OUTER_ROW_SIZE * units, 0, 2, 1, align=b.Align.MIN):
-                b.add(pocket, mode=b.Mode.SUBTRACT)
+                b.insert(pocket, mode=b.Mode.SUBTRACT)
 
             with (
                 b.Locations((0.0, WIDTH, 0.0)),
                 b.GridLocations(OUTER_ROW_SIZE * units, 0, 2, 1, align=b.Align.MIN),
             ):
-                b.add(pocket, mode=b.Mode.SUBTRACT, rotation=(0.0, 0.0, 180.0))
+                b.insert(pocket, mode=b.Mode.SUBTRACT, rotation=(0.0, 0.0, 180.0))
 
     return partify(part.part)
 
@@ -182,7 +182,7 @@ def make_cutout_box(units: int) -> b.Part:
             else:
                 handle = make_handle(length=50, thickness=1.2)
             with b.Locations((0.0, WIDTH, HEIGHT)):
-                b.add(handle)
+                b.insert(handle)
             b.extrude(sk.sketch, amount=HEIGHT, mode=b.Mode.INTERSECT)
 
             pad, pocket = make_s36_cutouts()
@@ -195,8 +195,8 @@ def make_cutout_box(units: int) -> b.Part:
             for loc in locs:
                 with b.Locations(loc):
                     # Always add wall cutouts on back side
-                    b.add(pad, rotation=(0, 0, 180.0))
-                    b.add(pocket, mode=b.Mode.SUBTRACT, rotation=(0, 0, 180.0))
+                    b.insert(pad, rotation=(0, 0, 180.0))
+                    b.insert(pocket, mode=b.Mode.SUBTRACT, rotation=(0, 0, 180.0))
 
                     # Add wall cutouts on front side only if they are not in
                     # the cutout area for the cap hinges:
@@ -204,10 +204,10 @@ def make_cutout_box(units: int) -> b.Part:
                         length / 2 + 15
                     ):
                         with b.Locations((0.0, -WIDTH, 0.0)):
-                            b.add(pad)
-                            b.add(pocket, mode=b.Mode.SUBTRACT)
+                            b.insert(pad)
+                            b.insert(pocket, mode=b.Mode.SUBTRACT)
 
-        b.add(box)
+        b.insert(box)
         b_cap_hinge_cutout(length)
 
     return partify(part.part)
@@ -262,7 +262,7 @@ def make_half_cutout_box(units: int, flip=False) -> b.Part:
             else:
                 handle = make_handle(length=50, thickness=1.2)
             with b.Locations((0.0, WIDTH, HEIGHT)):
-                b.add(handle)
+                b.insert(handle)
             b.extrude(sk.sketch, amount=HEIGHT, mode=b.Mode.INTERSECT)
 
             pad, pocket = make_s36_cutouts()
@@ -270,8 +270,8 @@ def make_half_cutout_box(units: int, flip=False) -> b.Part:
             with b.Locations((OUTER_ROW_SIZE, WIDTH, 0.0)):
                 with b.GridLocations(INNER_ROW_SIZE, 0, units, 1, align=b.Align.MIN):
                     # Always add wall cutouts on back side
-                    b.add(pad, rotation=(0, 0, 180.0))
-                    b.add(pocket, mode=b.Mode.SUBTRACT, rotation=(0, 0, 180.0))
+                    b.insert(pad, rotation=(0, 0, 180.0))
+                    b.insert(pocket, mode=b.Mode.SUBTRACT, rotation=(0, 0, 180.0))
 
             if units > 1:
                 # Add one less cutout on front side
@@ -279,10 +279,10 @@ def make_half_cutout_box(units: int, flip=False) -> b.Part:
                     with b.GridLocations(
                         INNER_ROW_SIZE, 0, units - 1, 1, align=b.Align.MIN
                     ):
-                        b.add(pad)
-                        b.add(pocket, mode=b.Mode.SUBTRACT)
+                        b.insert(pad)
+                        b.insert(pocket, mode=b.Mode.SUBTRACT)
 
-        b.add(box)
+        b.insert(box)
         b_cap_hinge_cutout(length, half=True)
 
         if flip:
