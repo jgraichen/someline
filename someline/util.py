@@ -81,6 +81,16 @@ class Plate:
 
     @cached_property
     def compound(self):
+        return self._compound(color=True)
+
+    @cached_property
+    def export_compound(self):
+        # Colors make STEP exports of assemblies non-deterministic, as
+        # OCCT writes the color styles of multiple parts in hash map
+        # order.
+        return self._compound(color=False)
+
+    def _compound(self, color: bool) -> Compound:
         parts = []
 
         rbb = [[m.part.bounding_box(tolerance=0.1) for m in r] for r in self.rows]
@@ -113,7 +123,11 @@ class Plate:
                 else:
                     loc = Location((x, y))
 
-                parts.append(loc * part)
+                part = loc * part
+                if not color:
+                    part.color = None
+
+                parts.append(part)
                 x = x + bb.size.X + x_pad
 
         return Compound(label=self.name, children=parts)
@@ -273,7 +287,9 @@ def _export(project: Project, _list: bool, directory: str):
         _export_stl(model.part, os.path.join(directory, f"{model.filename}.stl"))
 
     for plate in plates:
-        _export_step(plate.compound, os.path.join(directory, f"{plate.filename}.step"))
+        _export_step(
+            plate.export_compound, os.path.join(directory, f"{plate.filename}.step")
+        )
 
 
 def _export_stl(shape: Shape, file: str):
